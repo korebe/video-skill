@@ -1,4 +1,4 @@
-# claude-motion-design
+﻿# claude-motion-design
 
 - Repo: https://github.com/howseen-ai/claude-motion-design · MIT · ⭐738 · last commit 2026-10-02
 - Verified: 2026-10-31 · default branch `main`
@@ -24,7 +24,7 @@ py -3.12 -m pip install playwright imageio-ffmpeg numpy pillow
 py -3.12 -m playwright install chromium
 ```
 
-README 里 `cp -r skill/motion-design ~/.claude/skills/` 与 `mkdir -p` 是 POSIX 写法；在本机直接用
+README 里 `cp -r skill/motion-design ~/.claude/skills/` 与 `mkdir -p` 是 POSIX 写法；在此环境中直接用
 `Copy-Item` 或跳过——本整合包不依赖 Claude Code 的 skill 安装位置，直接驱动示例工程即可。
 
 ## 跑通示例（examples/howseen-launch，24 秒 Howseen 发布片）
@@ -65,3 +65,4 @@ ffmpeg -i out\video.mp4 -i out\audio.wav -map 0:v -map 1:a -c:v libx264 -crf 16 
 | 抽帧是黑屏 | 页面还没 ready 就截图；等 `document.fonts.ready` / 页面 ready 标志；先用 `probe` 验证 |
 | 背景 `http.server` 起不来 | 用第二个终端或 `Start-Job`，不要用 `&` |
 | 帧率/模糊异常 | 保持 60fps 渲染与亚帧混合的原始设置，不要后期补帧 |
+

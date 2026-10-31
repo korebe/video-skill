@@ -1,4 +1,4 @@
-# paper-motion-video
+﻿# paper-motion-video
 
 - Repo: https://github.com/DjoFE2021/paper-motion-video · MIT · ⭐1 · created & last commit 2026-10-21
 - Verified: 2026-10-31 · default branch `main`
@@ -53,7 +53,7 @@ $PMV = "$HOME\video-skills\paper-motion-video\skills\paper-motion-video\tools\pm
 
 - 上游给了 PowerShell 复制 skill 的命令；本整合包不需要复制到 `~/.claude/skills`，直接用仓库内
   `skills\paper-motion-video\tools\pmv.cmd`。
-- 缓存路径较深，保持工程路径短（`C:\v\<name>`），避免长路径问题（本机已启用 LongPaths）。
+- 缓存路径较深，保持工程路径短（`C:\v\<name>`），避免长路径问题（建议启用 LongPaths）。
 - 首次运行失败多半是网络（venv/模型/字体下载）——先联网跑通一次，之后可离线。
 
 ## 验收
@@ -70,3 +70,4 @@ $PMV = "$HOME\video-skills\paper-motion-video\skills\paper-motion-video\tools\pm
 | `pmv check` 不通过 | 按报告改 `scenes.js` 布局/文本；不要带病交付 |
 | 中文旁白不存在 | Kokoro 仅英文；用 SAPI/真人音频替换 `audio/` 后重跑 `pmv all --skip-narrate` |
 | 图表数字与论文不符 | 在 `config.json`/`scenes.js` 中手动核对数据点，不要信任自动提取 |
+

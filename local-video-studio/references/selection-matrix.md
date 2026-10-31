@@ -1,8 +1,8 @@
-# Pipeline selection matrix
+﻿# Pipeline selection matrix
 
 Verified **2026-10-31** against each repo's README and GitHub metadata. All seven are
 MIT-licensed, use branch `main`, and need no API key. The "Windows risk" column is the
-decision driver on this machine.
+decision driver for the reference Windows machine.
 
 ## Main table
 
@@ -27,7 +27,7 @@ decision driver on this machine.
 | 已有素材剪辑 | `ffmpeg-skill` | 手写 ffmpeg | 42 个工具、契约化、可验证 |
 | 严格离线 + 中文配音 | `ffmpeg-skill` + 本地 TTS 素材 | `paper-motion-video`（仅英文 Kokoro） | 两者都不联网渲染；注意后者的 Kokoro 模型为英文 |
 
-## Windows feasibility tiers (this machine)
+## Windows feasibility tiers (reference Windows machine)
 
 1. **Native, low risk:** `ffmpeg-skill`, `paper-motion-video`, `code-video-showcase`（bash 辅助脚本走 Git Bash）。
 2. **Native, medium risk:** `claude-motion-design`（Python 入口可移植，但 README 只有 POSIX 示例）、`explainer-video`（流程不是 bash，只有 TTS 需网络；用 `--audio` 可离线）。
@@ -50,3 +50,5 @@ material inaccuracies that change setup and feasibility:
 
 Also note `paper-motion-video` is brand new (1 star, created 2026-10-21) — treat as unproven
 and always run its `pmv check` before delivery.
+
+

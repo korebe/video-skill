@@ -47,7 +47,7 @@ Start with `references/selection-matrix.md` when the right pipeline is not obvio
 Tie-breakers: precision and determinism → `claude-motion-design`; fastest generic explainer →
 `explainer-video`; no-voice short → `paper-reel`; editing existing footage → `ffmpeg-skill`.
 
-Windows feasibility (verified 2026-10-31, matters on this machine):
+Windows feasibility (verified 2026-10-31, for the reference Windows machine):
 
 - **Native, low risk:** `ffmpeg-skill`（Windows CI 覆盖）、`paper-motion-video`（自带 `pmv.cmd`）、
   `code-video-showcase`（渲染器可回退 Edge，`.sh` 助手走 Git Bash）。
@@ -84,7 +84,7 @@ Do not silently pick a high-risk pipeline on Windows: state the risk and the fal
    project source folder. Report devices/tested playback, exact ffprobe facts, and anything the
    user still must supply.
 
-## Environment quick facts (this Windows machine, sampled 2026-10-31)
+## Environment quick facts (reference Windows machine, sampled 2026-10-31)
 
 All seven upstream repos were verified (GitHub API + README): all MIT, all branch `main`, no API
 keys. Pipeline languages differ from the naive "all Node" assumption:
@@ -93,7 +93,7 @@ keys. Pipeline languages differ from the naive "all Node" assumption:
   (`chromium-1234`), Windows SAPI TTS, long paths enabled.
 - Missing: **FFmpeg/ffprobe not on PATH** (install full gyan.dev build via
   `winget install Gyan.FFmpeg`; needs `libass`/`drawtext`/`zscale`/`loudnorm`/`vidstab`),
-  **Python 3.10–3.12 missing** (only 3.14 + ArcGIS 2.7; install 3.12 and use per-skill venvs —
+  **Python 3.10–3.12 missing** (only 3.14 plus a legacy 2.7 interpreter; install 3.12 and use per-skill venvs —
   `claude-motion-design`, `code-video-showcase`, `paper-reel`, `paper-motion-video`,
   `ffmpeg-skill` all involve Python), and the Playwright npm package is not globally resolvable.
 - GitHub `git clone` is blocked (connection reset). `install-pipelines.ps1` tries
@@ -150,8 +150,13 @@ projects/<slug>/
 | `scripts/new-project.ps1` | Scaffold a project folder with brief/storyboard templates |
 | `scripts/verify-output.ps1` | ffprobe checks: duration, resolution/aspect, audio, loudness; contact sheet |
 
-Skill root on this machine: `C:\Users\ASUS\.agents\skills\local-video-studio`
-(resolved as `$HOME/.agents/skills/local-video-studio`).
+Skill root after install: `$HOME/.agents/skills/local-video-studio`
+(`%USERPROFILE%\.agents\skills\local-video-studio` on Windows).
+
+
+
+
+
 
 
 

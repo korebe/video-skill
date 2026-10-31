@@ -1,4 +1,4 @@
-# Troubleshooting
+﻿# Troubleshooting
 
 Symptom → likely cause → fix. Fix the local toolchain; do not "solve" a failure by calling a cloud
 API. Run `scripts/env-check.ps1` first — it catches half of these before rendering.
@@ -7,7 +7,7 @@ API. Run `scripts/env-check.ps1` first — it catches half of these before rende
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| `'ffmpeg' is not recognized` | FFmpeg not on PATH (this machine: missing) | `winget install --id Gyan.FFmpeg -e`; reopen terminal; `ffmpeg -version` |
+| `'ffmpeg' is not recognized` | FFmpeg not on PATH (common on a fresh Windows install) | `winget install --id Gyan.FFmpeg -e`; reopen terminal; `ffmpeg -version` |
 | `ffmpeg-skill doctor` reports missing `libass`, `drawtext`, `zscale`, `loudnorm`, `vidstab` | Lean/stripped FFmpeg build | Install gyan.dev **full** build and make it the first `ffmpeg.exe` on PATH |
 | `pip install` fails building wheels on Python 3.14 | Too-new interpreter (3.13/3.14 lacks wheels for audio/ML deps) | Create the pipeline's venv with `py -3.12 -m venv ...`; never use 3.14 for these repos |
 | `ModuleNotFoundError: kokoro_onnx` / `numpy` | Wrong interpreter or venv not activated | Run the pipeline with its own `py -3.12`; expose `PMV`/`PYTHON` env vars |
@@ -64,3 +64,4 @@ API. Run `scripts/env-check.ps1` first — it catches half of these before rende
    encoder; another pipeline) and tell the user what changed.
 4. If an upstream repo is unmaintained/broken (e.g. `explainer-video` last commit 2026-05-27),
    pin the commit you tested in `notes.md`.
+

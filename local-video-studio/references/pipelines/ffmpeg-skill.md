@@ -1,4 +1,4 @@
-# ffmpeg-skill
+﻿# ffmpeg-skill
 
 - Repo: https://github.com/kajisho5/ffmpeg-skill · MIT · ⭐4148 · last commit 2026-10-31（最活跃）
 - Verified: 2026-10-31 · default branch `main` · npm 包 `ffmpeg-skill`
@@ -15,7 +15,7 @@ probe → edit → verify 工作流，另有 MCP server。Agent 不手写 ffmpeg
 ## 安装
 
 ```powershell
-# 1) 完整版 FFmpeg（必需；本机当前缺失）
+# 1) 完整版 FFmpeg（必需；若未安装）
 winget install --id Gyan.FFmpeg -e --source winget
 # 重开终端后：
 ffmpeg -version; ffprobe -version
@@ -84,3 +84,4 @@ py -3.12 $S\look.py out.mp4          # 生成联系表供人看
 | `python3` 找不到 | 用 `py -3.12` 或 python.org 的 `python` |
 | 想撤销 | 所有工具都不改输入，直接忽略新文件即可 |
 | 长任务超时 | `--timeout` 调大（默认 1800s），或 `--plan` 先出计划再执行 |
+

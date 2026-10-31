@@ -1,4 +1,4 @@
-# Environment setup (Windows)
+﻿# Environment setup (Windows)
 
 Target: one coherent toolchain that all seven pipelines can use without fighting each other.
 Run `scripts/env-check.ps1` before and after setup; it reports exact versions and install hints.
@@ -22,8 +22,8 @@ ffmpeg -version | Select-Object -First 1
 ffprobe -version | Select-Object -First 1
 ```
 
-> Never upgrade the ArcGIS Python 2.7 install and never make Python 3.14 the interpreter for
-> these pipelines. Python 3.13/3.14 has no wheels for Kokoro/whisper/audio stacks yet.
+> Never upgrade a legacy Python 2.7 interpreter that another app depends on, and never make
+> Python 3.14 the interpreter for these pipelines. Python 3.13/3.14 has no wheels for Kokoro/whisper/audio stacks yet.
 
 ## 2. FFmpeg must be a *full* build
 
@@ -56,7 +56,7 @@ ffmpeg -hide_banner -encoders | Select-String 'libx264|aac'
 
 Principles:
 
-- Use `py -3.12` explicitly in every command; `python` may resolve to 3.14 (or 2.7 in ArcGIS shells).
+- Use `py -3.12` explicitly in every command; `python` may resolve to 3.14 (or a legacy 2.7 from another app).
 - Expose per-skill variables instead of polluting PATH:
   `$env:PYTHON='C:\...\python.exe'`, `$env:PMV='...\tools\pmv.cmd'`, `$env:REEL='...\bin\reel'`.
 - If a repo's `requirements.txt` fails on 3.14, create its venv with 3.12 rather than fixing code.
@@ -79,7 +79,7 @@ npx playwright install chromium
 - `code-video-showcase` also honours `CHROME_EXE` (point it at
   `C:\Program Files\Google\Chrome\Application\chrome.exe` or Edge
   `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`).
-- Existing browser cache on this machine includes `chromium-1234` and `chromium_headless_shell-1234`.
+- A Playwright cache typically already contains `chromium-1234` and `chromium_headless_shell-1234`.
 
 ## 5. Fonts: vendor them, do not trust the network at render time
 
@@ -133,7 +133,7 @@ $env:HF_ENDPOINT = 'https://hf-mirror.com'     # Kokoro/whisper model downloads 
 - `python3` in Git Bash often does not exist for python.org installs — use `python` or `py -3.12`.
 - Execution policy: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` (once). ZIP-downloaded
   scripts get the Mark-of-the-Web; unblock before running: `Get-ChildItem -Recurse | Unblock-File`.
-- Long paths are enabled on this machine; keep project paths under ~180 chars anyway
+- Enable long paths on Windows and keep project paths under ~180 chars anyway
   (paper-motion-video caches deep under `~/.cache`).
 - `pwsh` is not installed here; Windows PowerShell 5.1 runs these scripts fine. Prefer
   `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\<name>.ps1`.
@@ -157,3 +157,7 @@ $env:HF_ENDPOINT = 'https://hf-mirror.com'     # Kokoro/whisper model downloads 
 - Python: `py -3.12 --version` works; `py -3.14 -c "import kokoro_onnx"` is not required.
 - Fonts: a test HTML with 中文 + English renders without tofu.
 - A 3-second local test render with voice succeeds before the real project starts.
+
+
+
+

@@ -1,4 +1,4 @@
-# code-video-showcase
+﻿# code-video-showcase
 
 - Repo: https://github.com/Moessif/code-video-showcase · MIT · ⭐241 · last commit 2026-10-28
 - Verified: 2026-10-31 · default branch `main`
@@ -57,7 +57,7 @@ py -3.12 synth_audio.py --out audio/demo.wav
 ## Windows 注意事项
 
 - 本仓库是七个里 Windows 文档最好的：渲染器按 `CHROME_EXE` → Playwright 自带 Chromium →
-  Edge（`channel: 'msedge'`）顺序回退。本机 Edge/Chrome 都在，可显式设 `CHROME_EXE`。
+  Edge（`channel: 'msedge'`）顺序回退。Windows 上通常 Edge/Chrome 都在，可显式设 `CHROME_EXE`。
 - `qa-check.sh`、`concat-and-encode.sh`、`analyze-reference.sh` 是 bash：用 Git Bash 跑；或把其中的
   ffprobe/ffmpeg 命令复制到 PowerShell。
 - Git Bash 里 `python3` 可能不存在（python.org 安装只有 `python`/`py`）——把 `PYTHON` 指到
@@ -78,3 +78,4 @@ py -3.12 synth_audio.py --out audio/demo.wav
 | 逐帧截图空白 | 页面资源未加载完；先 `--still` 抽帧确认 |
 | `.sh` 脚本报错 | 用 Git Bash，或手工执行里面的 ffmpeg/ffprobe 命令 |
 | 成片偏暗/偏亮 | 风格配方参数在模板/`segments` 页面里，按 `SKILL.md` 调，不要后期硬拉 |
+

@@ -1,4 +1,4 @@
-# Local Video Studio — 本地视频制作 Skill 整合包
+﻿# Local Video Studio — 本地视频制作 Skill 整合包
 
 把上传的《纯本地 / 不集成外部 API 的 Claude 视频制作 Skill 选型表单》里的 **7 个开源项目**，
 整合成 **1 个可直接安装的 DSH/Claude Skill 包**：统一入口、统一环境体检、统一安装脚本、
@@ -19,7 +19,7 @@
 powershell -NoProfile -ExecutionPolicy Bypass -File .\install-skill.ps1
 ```
 
-它会把 `local-video-studio\` 复制到 `C:\Users\ASUS\.agents\skills\local-video-studio\`。
+它会把 `local-video-studio\` 复制到 `%USERPROFILE%\.agents\skills\local-video-studio\`。
 **装完重启会话/应用**，新会话的技能目录里就会出现 `local-video-studio`。
 
 ### 方式 B：手动复制
@@ -43,7 +43,7 @@ DSH 会扫描的 skills 目录：`<项目>/.dsh/skills`、`<项目>/.agents/skil
 ```powershell
 $skill = "$HOME\.agents\skills\local-video-studio"
 
-# 1) 环境体检（本机当前会报 ffmpeg 缺失、Python 3.14 过新——按提示修）
+# 1) 环境体检（缺失项会逐条给出修复命令）
 powershell -NoProfile -ExecutionPolicy Bypass -File "$skill\scripts\env-check.ps1"
 
 # 2) 拉取流水线仓库（GitHub 被墙时自动走镜像/ZIP 回退）
@@ -93,12 +93,12 @@ local-video-studio/
 | `paper-motion-video` | 论文 → 2 分钟解说 + 图表生长 | Python + Kokoro + Playwright + imageio-ffmpeg | ✅ 首次下载后 | **低（有 pmv.cmd）** |
 | `ffmpeg-skill` | 已有素材剪辑/转码/字幕/响度 | Python 标准库 + FFmpeg/ffprobe | ✅ 完全离线 | **低（有 Windows CI）** |
 
-## 本机环境缺口（体检结论，2026-10-31）
+## 参考环境缺口（Windows 11 参考机实测，2026-10-31）
 
 | 缺口 | 影响 | 修复 |
 |---|---|---|
 | **FFmpeg/ffprobe 不在 PATH** | 所有流水线 | `winget install --id Gyan.FFmpeg -e`，重开终端 |
-| **只有 Python 3.14（+ArcGIS 2.7）** | 5 个流水线 | `winget install Python.Python.3.12`，并始终用 `py -3.12` |
+| **只有 Python 3.14（另有遗留 2.7 解释器）** | 5 个流水线 | `winget install Python.Python.3.12`，并始终用 `py -3.12` |
 | GitHub `git clone` 被重置 | 拉仓库 | 用 `install-pipelines.ps1` 的镜像/ZIP 回退，或浏览器下载 ZIP |
 | Playwright npm 包未全局安装 | 4 个流水线 | `npm i -g playwright && npx playwright install chromium`（浏览器缓存已在） |
 
@@ -118,7 +118,7 @@ local-video-studio/
 
 **Q：装完为什么新会话里没有这个 skill？**
 技能目录在会话启动时扫描，需要重启应用/新开会话。确认目录存在：
-`C:\Users\ASUS\.agents\skills\local-video-studio\SKILL.md`。
+`%USERPROFILE%\.agents\skills\local-video-studio\SKILL.md`。
 
 **Q：GitHub 完全连不上怎么办？**
 在浏览器打开仓库 → Code → Download ZIP，解压到 `%USERPROFILE%\video-skills\<流水线名>`，
@@ -143,3 +143,7 @@ Kokoro/whisper/audio 栈的版本互相冲突，且 3.14 没有 wheel。遵循 `
 - 本包按"尽力而为"提供，不保证上游项目的质量或稳定性（尤其 `paper-motion-video` 仓库很新、
   `explainer-video` 已数月未更新）；交付前务必跑各流水线自带的自检（`pmv check`、`reel check`、
   `ffmpeg-skill doctor`、`qa-check.sh`）。
+
+
+
+
