@@ -1,0 +1,21 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# local runtime artifacts
+tmp/
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+env-report.json
+lvs-install-report.json
+
+# video / audio outputs (keep the repo source-only)
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.mp3
+*.m4a
